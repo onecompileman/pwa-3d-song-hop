@@ -31,7 +31,7 @@ export class Player {
 
   goDown() {
     this.isDown = true;
-    this.follow.y = 0.1;
+    this.follow.y = 0.2;
   }
 
   update() {

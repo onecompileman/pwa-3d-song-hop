@@ -6,5 +6,6 @@ export const ScreenTypes = Object.freeze({
   MAIN_MENU: 'mainMenu',
   PAUSE: 'pause',
   SONG_LIST: 'songList',
-  LOADING: 'loading'
+  LOADING: 'loading',
+  CONGRATULATIONS: 'congratulations'
 });

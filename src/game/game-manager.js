@@ -26,6 +26,7 @@ import { Platform } from './game-objects/platform';
 import { ScreenTypes } from '../enums/screen-types';
 import { ScreenManager } from './screen-manager';
 import { AudioManager } from './audio-manager';
+import { SongService } from '../services/song-service';
 
 export class GameManager {
   constructor() {
@@ -35,6 +36,8 @@ export class GameManager {
   start() {
     this.actualPlaying = false;
     this.score = 0;
+    this.songEnded = false;
+    this.songService = new SongService();
     if (this.scene) {
       while (this.scene.children.length > 0) {
         this.scene.remove(this.scene.children[0]);
@@ -62,11 +65,13 @@ export class GameManager {
   initScreenManager() {
     this.screenManager = new ScreenManager();
     this.screenManager.screens.songList.onPlaySongCallback = (path, song) => {
+      this.song = song;
       this.screenManager.screens.loading.musicTitle = song.name;
       this.screenManager.screens.loading.artist = song.artist;
       this.screenManager.showScreen(ScreenTypes.LOADING);
       this.loadSong(path);
       this.play();
+      this.audioManager.song.onEnded = () => (this.songEnded = true);
     };
     this.screenManager.screens.inGameUI.onPauseCallback = () => {
       this.screenManager.screens.pause.score = this.score;
@@ -87,6 +92,7 @@ export class GameManager {
 
   initAudioManager() {
     this.audioManager = new AudioManager(this.camera);
+    this.song = null;
     this.lastFrequency = 0;
     this.currentFrequency = 0;
     this.frequencyThreshold = 20;
@@ -107,12 +113,21 @@ export class GameManager {
     this.playing = false;
   }
 
+  checkWin() {
+    if (this.songEnded && !this.platforms.length) {
+      this.screenManager.showScreen(ScreenTypes.CONGRATULATIONS);
+      this.songService.setNewHighScoreSong(this.song.name, this.score);
+      this.screenManager.screens.congratulations.onContinue = () => {
+        this.screenManager.showScreen(ScreenTypes.MAIN_MENU);
+      };
+    }
+  }
+
   gameover() {
-    this.actualPlaying = false;
-    this.score = 0;
+    this.songService.setNewHighScoreSong(this.song.name, this.score);
     this.screenManager.showScreen(ScreenTypes.GAME_OVER);
     const gameOverScreen = this.screenManager.screens.gameOver;
-    gameOver.score = this.score;
+    gameOverScreen.score = this.score;
     gameOverScreen.onMenuCallback = () => {
       this.screenManager.showScreen(ScreenTypes.MAIN_MENU);
     };
@@ -120,6 +135,9 @@ export class GameManager {
       this.play();
       this.audioManager.resetPlay();
     };
+    this.actualPlaying = false;
+    this.score = 0;
+    this.audioManager.pauseSong();
   }
 
   initBigProps() {
@@ -349,7 +367,7 @@ export class GameManager {
   }
 
   onMouseMove(event) {
-    console.log(event);
+    // console.log(event);
     if (event.touches) {
       const toFollowX = map(
         event.touches[0].clientX,
@@ -407,6 +425,7 @@ export class GameManager {
     if (this.playing) {
       if (this.actualPlaying) {
         this.updateScreen();
+        this.checkWin();
         this.currentFrequency = this.audioManager.getAnalyserAverageFrequency();
       }
 
@@ -439,13 +458,15 @@ export class GameManager {
     this.player.update();
     if (this.platforms.length && this.actualPlaying) {
       const firstPlatform = this.platforms[0];
-      if (firstPlatform.object.position.z >= -0.4 && !firstPlatform.bounced) {
+      if (firstPlatform.object.position.z >= -0.45 && !firstPlatform.bounced) {
         firstPlatform.bounced = true;
         this.player.goDown();
         this.player.onDownListener = () => {
           if (this.player.bBox.intersectsBox(firstPlatform.bBox)) {
             this.createOnBounceParticleSystem();
             this.score += 10;
+          } else {
+            this.gameover();
           }
         };
       }

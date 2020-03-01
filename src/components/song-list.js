@@ -1,4 +1,4 @@
-import { SongLists } from '../data/song-lists';
+import { SongService } from '../services/song-service';
 
 const componentStyles = `
 <style>
@@ -109,6 +109,7 @@ const componentStyles = `
 export class SongList extends HTMLElement {
   constructor() {
     super();
+    this.songService = new SongService();
     this.prop = {
       songLists: [],
       onPlaySongCallback: songPath => {},
@@ -138,8 +139,8 @@ export class SongList extends HTMLElement {
 
   updateSongs() {
     const songListWrapper = this.root.querySelector('.song-list-wrapper');
-
-    SongLists.forEach(song => {
+    const songLists = this.songService.getSongsWithScore();
+    songLists.forEach(song => {
       const songElement = document.createElement('div');
       songElement.className = 'song-list-item';
       songElement.innerHTML = `<img src="/assets/images/cd.png" alt="CD" width="52">
@@ -153,7 +154,9 @@ export class SongList extends HTMLElement {
                                 )}
                                 |
                                 <span class="last-record">
-                                    <b>Record:</b> None <span class="circle"></span>
+                                    <b>Record:</b> ${
+                                      song.score > 0 ? song.score : 'None'
+                                    }
                                 </span>
                             </div>
                         </div>

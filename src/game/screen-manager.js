@@ -10,7 +10,8 @@ export class ScreenManager {
       mainMenu: document.querySelector('main-menu'),
       pause: document.querySelector('pause-screen'),
       songList: document.querySelector('song-list'),
-      loading: document.querySelector('loading-screen')
+      loading: document.querySelector('loading-screen'),
+      congratulations: document.querySelector('congratulations-screen')
     };
     this.bindEvents();
   }

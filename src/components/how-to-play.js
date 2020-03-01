@@ -64,7 +64,7 @@ export class HowToPlay extends HTMLElement {
                     X
                 </span>
             </div>
-            <img class="how-to-play-image" src="assets/images/how-to-play.jpg" alt="How to Play">
+            <img class="how-to-play-image" src="/assets/images/how-to-play.jpg" alt="How to Play">
         </div>
         `;
   }

@@ -1,81 +1,81 @@
 const componentStyles = `
 <style>
-    .game-over {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        font-family: Arial;
-        background-color: rgba(0,0,0,0.5);
-        text-shadow: 0 0 3px rgba(0,0,0,0.6);
-    }
+  .game-over {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: Arial;
+    background-color: rgba(0,0,0,0.5);
+    text-shadow: 0 0 3px rgba(0,0,0,0.6);
+  }
 
-    .game-over-text {
-        font-size: 36px;
-        margin-top: 60px;
-        color: white;
-        letter-spacing: 2px;
-    }
+  .game-over-text {
+    font-size: 36px;
+    margin-top: 60px;
+    color: white;
+    letter-spacing: 2px;
+  }
 
-    .score {
-        font-size: 68px;
-        margin-top: 30px;
-        color: white;
-    }
-    
-    .score-label {
-        font-size: 20px;
-        text-transform: uppercase;
-        color: white;
-        margin-bottom: 20px;
-    }
+  .score {
+    font-size: 68px;
+    margin-top: 30px;
+    color: white;
+  }
+  
+  .score-label {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 20px;
+  }
 
-    .circle-container {
-        display: flex;
-        align-items: center;
-        font-size: 24px;
-    }
+  .circle-container {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+  }
 
-    .circle {
-        height: 24px;
-        width: 24px;
-        border-radius: 100%;
-        background-color: white;
-    }
+  .circle {
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+    background-color: white;
+  }
 
-    .action-container {
-        width: 80%;
-        min-width: 250px;
-        max-width: 350px;
-        bottom: 35px;
-        position: absolute;
-    }
+  .action-container {
+    width: 80%;
+    min-width: 250px;
+    max-width: 350px;
+    bottom: 35px;
+    position: absolute;
+  }
 
-    .retry-button, .menu-button {
-        height: 36px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-size: 18px;
-        margin-top: 20px;
-        letter-spacing: 1.5px
-    }
+  .retry-button, .menu-button {
+    height: 36px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+    letter-spacing: 1.5px
+  }
 
-    .menu-button {
-        background-color: #004FB3;
-    }
+  .menu-button {
+    background-color: #004FB3;
+  }
 
-    .circle-text {
-        color: white;
-        margin-right: 8px;
-    }
+  .circle-text {
+    color: white;
+    margin-right: 8px;
+  }
 
-    .retry-button {
-        background-color: #FA0C84;
-    }
+  .retry-button {
+    background-color: #FA0C84;
+  }
 </style>
 `;
 
@@ -125,8 +125,8 @@ export class GameOver extends HTMLElement {
     this.prop.onMenuCallback = onMenuCallback;
   }
 
-  set onResumeCallback(onResumeCallback) {
-    this.prop.onResumeCallback = onResumeCallback;
+  set onRetryCallback(onRetryCallback) {
+    this.prop.onRetryCallback = onRetryCallback;
   }
 
   bindEvents() {
