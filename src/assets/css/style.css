@@ -1,0 +1,40 @@
+body,
+main {
+  height: 100vh;
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: #445;
+  display: flex;
+  justify-content: center;
+}
+
+#mainCanvas {
+  max-width: 450px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+game-over,
+pause-screen,
+about-screen,
+song-list,
+how-to-play,
+main-menu,
+loading-screen {
+  position: absolute;
+  max-width: 450px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+in-game-ui {
+  position: absolute;
+  max-width: 450px;
+  width: 100%;
+  height: fit-content;
+  top: 0;
+  z-index: 100;
+}
