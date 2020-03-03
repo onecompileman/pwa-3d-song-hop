@@ -47,7 +47,7 @@ export class Player {
         Math.abs(this.object.position.y - this.follow.y) > 0.02 ||
         Math.abs(this.object.position.x - this.follow.x)
       ) {
-        this.object.position.lerp(this.follow, 0.3);
+        this.object.position.copy(this.position.lerp(this.follow, 0.3));
       }
     }
     this.bBox.setFromObject(this.object);

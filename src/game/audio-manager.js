@@ -44,7 +44,7 @@ export class AudioManager {
 
   resetPlay() {
     this.song.stop().play();
-    this.songStartTime = 0;
+    this.songStartTime = this.song.context.currentTime;
   }
 
   updateAnalyser() {
