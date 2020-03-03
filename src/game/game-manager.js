@@ -143,9 +143,9 @@ export class GameManager {
 
   initBigProps() {
     this.bigProps = [];
-    for (let r = 0; r < 12; r++) {
-      for (let c = 0; c < 8; c++) {
-        const position = new Vector3(c * 34.8 - 123 + 2.5, r * 23.8 + -5, -220);
+    for (let r = 0; r < 6; r++) {
+      for (let c = 0; c < 6; c++) {
+        const position = new Vector3(c * 12.8 - 43 + 2.5, r * 12.8 + -5, -70);
         const bigProp = new BigProp(position);
         this.scene.add(bigProp.object);
         this.bigProps.push(bigProp);
@@ -158,7 +158,7 @@ export class GameManager {
     this.generationSpeedMax = 4;
     this.generateCounter =
       getRandomInt(this.generationSpeedMin, this.generationSpeedMax) * 60;
-    this.speed = 0.09;
+    this.speed = 0.1;
     this.complexity = 1;
     this.platforms = [];
   }
@@ -170,7 +170,7 @@ export class GameManager {
     // const hasBeat = this.currentFrequency >= 110;
     if (this.generateCounter <= 0 && hasBeat) {
       this.lastFrequency = this.currentFrequency;
-      const position = new Vector3(getRandomInt(-1.9, 1.9), 0, -30);
+      const position = new Vector3(getRandomInt(-1.9, 1.9), 0, -22);
       const velocity = new Vector3(0, 0, this.speed);
       const platform = new Platform(position, velocity);
       this.scene.add(platform.object);
@@ -199,6 +199,8 @@ export class GameManager {
 
   initParticleSystems() {
     this.particleSystems = [];
+    const particleColor = new Color(0x4444ff);
+    particleColor.convertSRGBToLinear();
     this.playerParticleSystem = new ParticleSystem(
       this.scene,
       1,
@@ -206,7 +208,7 @@ export class GameManager {
       100,
       65,
       this.player.position,
-      new Color(0x4444ff),
+      particleColor,
       0.3,
       new Vector3(-0.002, -0.002, 0.005),
       new Vector3(0.002, 0.002, 0.009)
@@ -216,6 +218,8 @@ export class GameManager {
   }
 
   createOnBounceParticleSystem() {
+    const particleColor = new Color(0x1111ee);
+    particleColor.convertSRGBToLinear();
     const particleSystem = new ParticleSystem(
       this.scene,
       15,
@@ -223,7 +227,7 @@ export class GameManager {
       30,
       30,
       this.player.position,
-      new Color(0x1111ee),
+      particleColor,
       0.15,
       new Vector3(-1, 0.1, -1),
       new Vector3(1, 0.3, 1),
@@ -238,9 +242,11 @@ export class GameManager {
   }
 
   initColors() {
-    this.colors = [0x004fb3, 0xb3400f, 0x4fb300, 0xb3114f].map(
-      c => new Color(c)
-    );
+    this.colors = [0x004fb3, 0xb3400f, 0x4fb300, 0xb3114f].map(c => {
+      const color = new Color(c);
+      color.convertSRGBToLinear();
+      return color;
+    });
     this.changeColorInterval = 1200;
     this.changeColorCounter = this.changeColorInterval;
     this.currentColor = this.colors[0].clone();
@@ -334,7 +340,7 @@ export class GameManager {
       75,
       this.canvas.clientWidth / this.canvas.clientHeight,
       0.1,
-      1000
+      100
     );
     this.camera.position.z = 3.8;
     this.camera.position.y = 2.6;
@@ -345,7 +351,6 @@ export class GameManager {
   initLights() {
     this.ambientLight = new AmbientLight(0xf0f0f0, 0.4);
     this.directionalLight = new DirectionalLight(0xf9f9f9, 0.6);
-    this.directionalLight.castShadow = true;
     this.scene.add(this.directionalLight).add(this.ambientLight);
   }
 
@@ -366,7 +371,6 @@ export class GameManager {
   }
 
   onMouseMove(event) {
-    // console.log(event);
     if (event.touches) {
       const toFollowX = map(
         event.touches[0].clientX,
@@ -440,7 +444,6 @@ export class GameManager {
 
       this.composer.render();
     }
-    // this.renderer.render(this.scene, this.camera);
   }
 
   updateBigProps() {
@@ -450,7 +453,6 @@ export class GameManager {
   updateAudio() {
     if (this.frequencyData) {
       this.audioManager.updateAnalyser();
-      // console.log(this.frequencyData);
     }
   }
 
@@ -458,7 +460,7 @@ export class GameManager {
     this.player.update();
     if (this.platforms.length && this.actualPlaying) {
       const firstPlatform = this.platforms[0];
-      if (firstPlatform.object.position.z >= -0.45 && !firstPlatform.bounced) {
+      if (firstPlatform.object.position.z >= -0.65 && !firstPlatform.bounced) {
         firstPlatform.bounced = true;
         this.player.goDown();
         this.player.onDownListener = () => {

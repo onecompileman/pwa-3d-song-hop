@@ -13,7 +13,7 @@ import { getRandomItem, getRandomInt } from '../utils/randomizer';
 export class BigProp {
   constructor(position) {
     const geometry = new EdgesGeometry(
-      new BoxBufferGeometry(getRandomInt(10, 30), getRandomInt(15, 30), 5)
+      new BoxBufferGeometry(getRandomInt(6, 12), getRandomInt(6, 12), 3)
     );
     const material = new LineBasicMaterial({
       color: 0x1112ff
@@ -22,7 +22,7 @@ export class BigProp {
     this.object.position.copy(position);
     this.direction = getRandomItem(['x', 'y']);
     this.move = 0;
-    this.increment = getRandomInt(0.05, 0.1);
+    this.increment = getRandomInt(0.02, 0.06);
     this.colors = [0x004fb3, 0xb3400f, 0x4fb300, 0xb3114f].map(
       c => new Color(c)
     );

@@ -11,7 +11,7 @@ import {
 
 export class MainPlatform {
   constructor() {
-    const geometry = new BoxBufferGeometry(5, 40, 0.2);
+    const geometry = new BoxBufferGeometry(5, 30, 0.2);
     const geometry1 = new EdgesGeometry(geometry);
     const material = new LineBasicMaterial({
       color: 0x2222ff

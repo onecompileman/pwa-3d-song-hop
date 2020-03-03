@@ -57,9 +57,6 @@ export class ParticleSystem {
     return !this.loop && this.life <= 0;
   }
 
-  //    getRandomInt(-0.002, 0.002),
-  //         getRandomInt(-0.002, 0.002),
-  //         getRandomInt(0.005, 0.009)
   createParticles() {
     for (let i = 0; i < this.count; i++) {
       const position = this.position.clone();
