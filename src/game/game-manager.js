@@ -118,7 +118,10 @@ export class GameManager {
     if (this.songEnded && !this.platforms.length) {
       this.screenManager.showScreen(ScreenTypes.CONGRATULATIONS);
       this.songService.setNewHighScoreSong(this.song.name, this.score);
-      this.screenManager.screens.congratulations.onContinue = () => {
+      this.screenManager.screens.congratulations.score = this.score;
+      this.screenManager.screens.congratulations.musicTitle = this.song.name;
+      this.screenManager.screens.congratulations.artist = this.song.artist;
+      this.screenManager.screens.congratulations.onContinueCallback = () => {
         this.screenManager.showScreen(ScreenTypes.MAIN_MENU);
       };
     }

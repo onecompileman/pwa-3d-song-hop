@@ -5,7 +5,8 @@ import {
   Sphere,
   Box3,
   Vector3,
-  SphereBufferGeometry
+  SphereBufferGeometry,
+  MathUtils
 } from 'three';
 
 export class Player {
@@ -42,14 +43,25 @@ export class Player {
           this.isDown = false;
           this.follow.y = 1;
         }
+      } else {
       }
       if (
         Math.abs(this.object.position.y - this.follow.y) > 0.02 ||
-        Math.abs(this.object.position.x - this.follow.x)
+        Math.abs(this.object.position.x - this.follow.x) > 0.2
       ) {
-        this.object.position.copy(this.position.lerp(this.follow, 0.3));
+        this.object.position.y = MathUtils.lerp(
+          this.object.position.y,
+          this.follow.y,
+          0.3
+        );
+        this.object.position.x = MathUtils.lerp(
+          this.object.position.x,
+          this.follow.x,
+          0.3
+        );
+        MathUtils.le;
+        this.bBox.setFromObject(this.object);
       }
     }
-    this.bBox.setFromObject(this.object);
   }
 }

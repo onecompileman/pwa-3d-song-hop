@@ -1,68 +1,89 @@
 const componentStyles = `
 <style>
-    .congrats {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        font-family: Arial;
-        background-color: rgba(0,0,0,0.5);
-        text-shadow: 0 0 3px rgba(0,0,0,0.6);
+  .congrats {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: Arial;
+    background-color: rgba(0,0,0,0.5);
+    text-shadow: 0 0 3px rgba(0,0,0,0.6);
+  }
+
+  .music-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+    .music-title {
+    color: #ddd;
+    font-size: 26px;
+    margin-top: 25px;
+  }
+
+  .score {
+    font-size: 68px;
+    margin-top: 30px;
+    color: white;
+  }
+    
+  .score-label {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+ 
+
+  .circle-text {
+    color: white;
+    margin-right: 8px;
+  }
+
+
+  .artist {
+    color: #ddd;
+    font-size: 18px;
+    margin-top: 8px;
+  }
+
+  .circle-container {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+  }
+
+  .circle {
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+    background-color: white;
     }
 
-    .music-container {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      align-items: center;
-    }
+  .continue-button {
+    height: 36px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+    letter-spacing: 1.5px;
+    background-color:#FA0C84;
+  }
 
-     .music-title {
-        color: #ddd;
-        font-size: 26px;
-        margin-top: 25px;
-    }
-
-    .artist {
-      color: #ddd;
-      font-size: 18px;
-      margin-top: 8px;
-    }
-
-      .circle-container {
-        display: flex;
-        align-items: center;
-        font-size: 24px;
-    }
-
-    .circle {
-        height: 24px;
-        width: 24px;
-        border-radius: 100%;
-        background-color: white;
-    }
-
-    .continue-button {
-        height: 36px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-size: 18px;
-        margin-top: 20px;
-        letter-spacing: 1.5px
-        background-color: #004FB3;
-    }
-
-    .action-container {
-        width: 80%;
-        min-width: 250px;
-        max-width: 350px;
-        bottom: 35px;
-        position: absolute;
-    }
+  .action-container {
+      width: 80%;
+      min-width: 250px;
+      max-width: 350px;
+      bottom: 35px;
+      position: absolute;
+  }
 
 </style>
 `;

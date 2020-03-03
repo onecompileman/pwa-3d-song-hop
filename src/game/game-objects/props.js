@@ -17,7 +17,7 @@ export class Props {
     const material = new LineBasicMaterial({
       color: 0x1112ff
     });
-    this.object = new Mesh(geometry1, material);
+    this.object = new LineSegments(geometry1, material);
     this.object.position.copy(position.clone());
     this.velocity = new Vector3(0, 0, 0.08);
   }
