@@ -2,8 +2,6 @@
 
 ![alt text](https://i.ibb.co/bz4886M/Capture.jpg)
 
-Sample of using web components by a Minesweeper Game
-
 Demo: [click here](https://onecompileman.com/song-hop/)
 
 **Get started** 
