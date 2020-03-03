@@ -135,6 +135,7 @@ export class GameManager {
     gameOverScreen.onRetryCallback = () => {
       this.play();
       this.audioManager.resetPlay();
+      this.screenManager.showScreen(ScreenTypes.IN_GAME_UI);
     };
     this.actualPlaying = false;
     this.score = 0;
@@ -167,7 +168,6 @@ export class GameManager {
     const hasBeat =
       Math.abs(this.currentFrequency - this.lastFrequency) >=
       this.frequencyThreshold;
-    // const hasBeat = this.currentFrequency >= 110;
     if (this.generateCounter <= 0 && hasBeat) {
       this.lastFrequency = this.currentFrequency;
       const position = new Vector3(getRandomInt(-1.9, 1.9), 0, -22);
@@ -290,7 +290,7 @@ export class GameManager {
 
   generateProps() {
     if (this.propGenerationCounter <= 0) {
-      this.createProps(15);
+      this.createProps(10);
       this.propGenerationCounter = this.propGenerationMax;
     }
 

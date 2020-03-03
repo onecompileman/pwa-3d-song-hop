@@ -132,7 +132,7 @@ export class GameOver extends HTMLElement {
   bindEvents() {
     this.root
       .querySelector('#retry')
-      .addEventListener('click', () => this.prop.onResumeCallback());
+      .addEventListener('click', () => this.prop.onRetryCallback());
     this.root
       .querySelector('#menu')
       .addEventListener('click', () => this.prop.onMenuCallback());

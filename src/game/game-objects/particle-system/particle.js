@@ -9,12 +9,11 @@ import {
 
 export class Particle {
   constructor(position, life, color, velocity, size) {
-    const geometry = new SphereBufferGeometry(size, 12, 12);
+    const geometry = new SphereBufferGeometry(size, 12, 7);
     const material = new MeshLambertMaterial({
       color,
       emissive: 0x5555ff,
-      emissiveIntensity: 0.2,
-      opacity: 0.8
+      emissiveIntensity: 0.2
     });
     this.object = new Mesh(geometry, material);
 
@@ -22,8 +21,6 @@ export class Particle {
     this.life = life;
     this.origLife = life;
     this.velocity = velocity.clone();
-
-    this.object.castShadow = true;
     this.bBox = new Box3(this.object);
   }
 
@@ -31,7 +28,6 @@ export class Particle {
     this.object.position.add(this.velocity);
     const lifePercentage = this.life / this.origLife;
     this.object.scale.set(lifePercentage, lifePercentage, lifePercentage);
-    this.object.material.opacity -= 0.01;
     this.life--;
   }
 
