@@ -5,16 +5,16 @@ import {
   LineSegments,
   MeshLambertMaterial,
   Mesh,
-  BoxGeometry
+  BoxGeometry,
+  BoxBufferGeometry
 } from 'three';
 
 export class MainPlatform {
   constructor() {
-    const geometry = new BoxGeometry(5, 40, 0.2);
+    const geometry = new BoxBufferGeometry(5, 40, 0.2);
     const geometry1 = new EdgesGeometry(geometry);
     const material = new LineBasicMaterial({
-      color: 0x2222ff,
-      linewidth: 1000
+      color: 0x2222ff
     });
     this.scaled = 0.01;
     this.maxScaled = 1;

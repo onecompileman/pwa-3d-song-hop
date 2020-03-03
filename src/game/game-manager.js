@@ -9,7 +9,8 @@ import {
   LinearToneMapping,
   Vector3,
   Clock,
-  Color
+  Color,
+  ReinhardToneMapping
 } from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
@@ -262,15 +263,13 @@ export class GameManager {
     this.canvas = document.querySelector('#mainCanvas');
     this.renderer = new WebGLRenderer({
       canvas: this.canvas,
-      antialias: true,
       alpha: true
     });
     this.renderer.setClearColor(this.currentColor, 0.1);
     this.renderer.outputEncoding = sRGBEncoding;
     this.renderer.setSize(constrain(innerWidth, null, 550), innerHeight);
     this.renderer.gammaFactor = 2.2;
-    this.renderer.shadowMap.enabled = true;
-    this.renderer.toneMapping = LinearToneMapping;
+    this.renderer.toneMapping = ReinhardToneMapping;
   }
 
   initScene() {
@@ -335,7 +334,7 @@ export class GameManager {
       75,
       this.canvas.clientWidth / this.canvas.clientHeight,
       0.1,
-      400
+      1000
     );
     this.camera.position.z = 3.8;
     this.camera.position.y = 2.6;
@@ -438,6 +437,7 @@ export class GameManager {
       this.updatePlayer();
       this.generateProps();
       this.updateAudio();
+
       this.composer.render();
     }
     // this.renderer.render(this.scene, this.camera);

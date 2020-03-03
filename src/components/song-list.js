@@ -143,7 +143,7 @@ export class SongList extends HTMLElement {
     songLists.forEach(song => {
       const songElement = document.createElement('div');
       songElement.className = 'song-list-item';
-      songElement.innerHTML = `<img src="/assets/images/cd.png" alt="CD" width="52">
+      songElement.innerHTML = `<img src="assets/images/cd.png" alt="CD" width="52">
                         <div class="song-description">
                             <span class="song-title">
                                 ${song.name}
@@ -160,9 +160,9 @@ export class SongList extends HTMLElement {
                                 </span>
                             </div>
                         </div>
-                        <img src="/assets/images/play.png" alt="Play" width="52">`;
+                        <img src="assets/images/play.png" alt="Play" width="52">`;
       songElement.addEventListener('click', () => {
-        this.onPlaySongCallback(`/assets/songs/${song.file}`, song);
+        this.onPlaySongCallback(`assets/songs/${song.file}`, song);
       });
       songListWrapper.appendChild(songElement);
     });
@@ -195,7 +195,7 @@ export class SongList extends HTMLElement {
                 </span>
             </div>
             <div style="text-align: center; margin-top: 40px;">
-                <img class="song-icon" src="/assets/images/music.png" alt="Music icon">
+                <img class="song-icon" src="assets/images/music.png" alt="Music icon">
             </div>
             <div class="song-list-text">
                 PICK A <b style="color:#FA0C84;">SONG</b>

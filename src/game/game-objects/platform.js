@@ -1,8 +1,14 @@
-import { BoxGeometry, MeshLambertMaterial, Mesh, Box3 } from 'three';
+import {
+  BoxGeometry,
+  MeshLambertMaterial,
+  Mesh,
+  Box3,
+  BoxBufferGeometry
+} from 'three';
 
 export class Platform {
   constructor(position, velocity) {
-    const geometry = new BoxGeometry(1.26, 0.3, 1.26);
+    const geometry = new BoxBufferGeometry(1.26, 0.3, 1.26);
     const material = new MeshLambertMaterial({
       color: 0x1111fe,
       emissive: 0x4444ff,

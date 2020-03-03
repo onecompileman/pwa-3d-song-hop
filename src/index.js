@@ -10,12 +10,12 @@ import './components/song-list';
 import './components/loading';
 import './components/congratulations';
 
-const gameManager = new GameManager();
-
-gameManager.start();
-
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js');
   });
 }
+
+const gameManager = new GameManager();
+
+gameManager.start();

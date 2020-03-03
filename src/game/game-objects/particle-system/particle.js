@@ -1,8 +1,15 @@
-import { SphereGeometry, MeshLambertMaterial, Mesh, Sphere, Box3 } from 'three';
+import {
+  SphereGeometry,
+  MeshLambertMaterial,
+  Mesh,
+  Sphere,
+  Box3,
+  SphereBufferGeometry
+} from 'three';
 
 export class Particle {
   constructor(position, life, color, velocity, size) {
-    const geometry = new SphereGeometry(size, 12, 12);
+    const geometry = new SphereBufferGeometry(size, 12, 12);
     const material = new MeshLambertMaterial({
       color,
       emissive: 0x5555ff,

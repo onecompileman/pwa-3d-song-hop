@@ -17,7 +17,7 @@ module.exports = {
     new CopyPlugin([{ from: './src/manifest.json', to: 'manifest.json' }]),
     new GenerateSW({
       swDest: './sw.js',
-      maximumFileSizeToCacheInBytes: 500000000
+      maximumFileSizeToCacheInBytes: 5000000
     })
   ],
   devServer: {

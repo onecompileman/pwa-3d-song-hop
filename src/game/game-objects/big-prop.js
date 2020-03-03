@@ -5,18 +5,18 @@ import {
   EdgesGeometry,
   LineSegments,
   LineBasicMaterial,
-  Color
+  Color,
+  BoxBufferGeometry
 } from 'three';
 import { getRandomItem, getRandomInt } from '../utils/randomizer';
 
 export class BigProp {
   constructor(position) {
     const geometry = new EdgesGeometry(
-      new BoxGeometry(getRandomInt(10, 30), getRandomInt(15, 30), 5)
+      new BoxBufferGeometry(getRandomInt(10, 30), getRandomInt(15, 30), 5)
     );
     const material = new LineBasicMaterial({
-      color: 0x1112ff,
-      linewidth: 1000
+      color: 0x1112ff
     });
     this.object = new LineSegments(geometry, material);
     this.object.position.copy(position);

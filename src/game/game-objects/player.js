@@ -4,12 +4,13 @@ import {
   Mesh,
   Sphere,
   Box3,
-  Vector3
+  Vector3,
+  SphereBufferGeometry
 } from 'three';
 
 export class Player {
   constructor() {
-    const geometry = new SphereGeometry(0.3, 12, 12);
+    const geometry = new SphereBufferGeometry(0.3, 12, 12);
     const material = new MeshLambertMaterial({
       color: 0x4444ff,
       emissive: 0x7777ff,
