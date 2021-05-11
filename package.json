@@ -20,7 +20,7 @@
     "workbox-webpack-plugin": "^5.0.0"
   },
   "dependencies": {
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "music-beat-detector": "^0.1.1",
     "oimo": "^1.0.9",
     "three": "^0.113.2"
