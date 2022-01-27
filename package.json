@@ -23,6 +23,6 @@
     "lodash": "^4.17.15",
     "music-beat-detector": "^0.1.1",
     "oimo": "^1.0.9",
-    "three": "^0.113.2"
+    "three": "^0.137.0"
   }
 }
